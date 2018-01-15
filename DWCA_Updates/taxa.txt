@@ -1,0 +1,336 @@
+i: a_matthewsii_(Rchb._f.)_Schltr.	Aa matthewsii (Rchb. f.) Schltr.		Plantae					Aa	species
+
+i: belmoschus_angulosus_Wall._ex_Wight_&_Arn.	Abelmoschus angulosus Wall. ex Wight & Arn.		Plantae					Abelmoschus	species
+
+i: belmoschus_moschatus_Medik.	Abelmoschus moschatus Medik.		Plantae					Abelmoschus	species
+
+i: bies_concolor_(Gordon_&_Glend.)_Lindl._ex_Hildebr.	Abies concolor (Gordon & Glend.) Lindl. ex Hildebr.		Plantae					Abies	species
+
+i: bies_religiosa_(Kunth)_Schltdl._&_Cham.	Abies religiosa (Kunth) Schltdl. & Cham.		Plantae					Abies	species
+
+i: bildgaardia_ovata_(Burm._f.)_Kral	Abildgaardia ovata (Burm. f.) Kral		Plantae					Abildgaardia	species
+
+i: broma_augusta_(L.)_L._f.	Abroma augusta (L.) L. f.		Plantae					Abroma	species
+
+i: brus_precatorius_L.	Abrus precatorius L.		Plantae					Abrus	species
+
+i: butilon_abutiloides_(Jacq.)_Garcke_ex_Hochr.	Abutilon abutiloides (Jacq.) Garcke ex Hochr.		Plantae					Abutilon	species
+
+i: butilon_andrieuxii_Hemsl.	Abutilon andrieuxii Hemsl.		Plantae					Abutilon	species
+
+i: butilon_divaricatum_Turcz.	Abutilon divaricatum Turcz.		Plantae					Abutilon	species
+
+i: butilon_fruticosum_Guill._&_Perr.	Abutilon fruticosum Guill. & Perr.		Plantae					Abutilon	species
+
+i: butilon_giganteum_(Jacq.)_Sweet	Abutilon giganteum (Jacq.) Sweet		Plantae					Abutilon	species
+
+i: butilon_grandifolium_(Willd.)_Sweet	Abutilon grandifolium (Willd.) Sweet		Plantae					Abutilon	species
+
+i: butilon_hirtum_(Lam.)_Sweet	Abutilon hirtum (Lam.) Sweet		Plantae					Abutilon	species
+
+i: butilon_ibarrense_Kunth	Abutilon ibarrense Kunth		Plantae					Abutilon	species
+
+i: butilon_incanum_(Link)_Sweet	Abutilon incanum (Link) Sweet		Plantae					Abutilon	species
+
+i: butilon_indicum_(L.)_Sweet	Abutilon indicum (L.) Sweet		Plantae					Abutilon	species
+
+i: butilon_reflexum_(Lam.)_Sweet	Abutilon reflexum (Lam.) Sweet		Plantae					Abutilon	species
+
+i: butilon_sachetianum_Fosberg	Abutilon sachetianum Fosberg		Plantae					Abutilon	species
+
+i: butilon_striatum_Dicks.	Abutilon striatum Dicks.		Plantae					Abutilon	species
+
+i: butilon_trisulcatum_(Jacq.)_Urb.	Abutilon trisulcatum (Jacq.) Urb.		Plantae					Abutilon	species
+
+i: cacia_angustissima_(Mill.)_Kuntze	Acacia angustissima (Mill.) Kuntze		Plantae					Acacia	species
+
+i: cacia_confusa_Merr.	Acacia confusa Merr.		Plantae					Acacia	species
+
+i: cacia_farnesiana_(L.)_Willd.	Acacia farnesiana (L.) Willd.		Plantae					Acacia	species
+
+i: cacia_koa_A._Gray	Acacia koa A. Gray		Plantae					Acacia	species
+
+i: cacia_macracantha_Humb._&_Bonpl._ex_Willd.	Acacia macracantha Humb. & Bonpl. ex Willd.		Plantae					Acacia	species
+
+i: cacia_muricata_(L.)_Willd.	Acacia muricata (L.) Willd.		Plantae					Acacia	species
+
+i: cacia_retusa_(Jacq.)_R.A._Howard	Acacia retusa (Jacq.) R.A. Howard		Plantae					Acacia	species
+
+i: cacia_tortuosa_(L.)_Willd.	Acacia tortuosa (L.) Willd.		Plantae					Acacia	species
+
+i: caena_elongata_L.	Acaena elongata L.		Plantae					Acaena	species
+
+i: calypha_alopecuroides_Jacq.	Acalypha alopecuroides Jacq.		Plantae					Acalypha	species
+
+i: calypha_amentacea_subsp._wilkesiana_(Müll._Arg.)_Fosberg	Acalypha amentacea subsp. wilkesiana (Müll. Arg.) Fosberg		Plantae					Acalypha	subspecies
+
+i: calypha_angustifolia_Sw.	Acalypha angustifolia Sw.		Plantae					Acalypha	species
+
+i: calypha_arvensis_Poepp.	Acalypha arvensis Poepp.		Plantae					Acalypha	species
+
+i: calypha_chamaedrifolia_(Lam.)_Müll._Arg.	Acalypha chamaedrifolia (Lam.) Müll. Arg.		Plantae					Acalypha	species
+
+i: calypha_poiretii_Spreng.	Acalypha poiretii Spreng.		Plantae					Acalypha	species
+
+i: calypha_portoricensis_Müll._Arg.	Acalypha portoricensis Müll. Arg.		Plantae					Acalypha	species
+
+i: calypha_setosa_A._Rich.	Acalypha setosa A. Rich.		Plantae					Acalypha	species
+
+i: canthocereus_tetragonus_(L.)_Hummelinck	Acanthocereus tetragonus (L.) Hummelinck		Plantae					Acanthocereus	species
+
+i: canthospermum_hispidum_DC.	Acanthospermum hispidum DC.		Plantae					Acanthospermum	species
+
+i: chillea_millefolium_L.	Achillea millefolium L.		Plantae					Achillea	species
+
+i: chimenes_antirrhina_(DC.)_C.V._Morton	Achimenes antirrhina (DC.) C.V. Morton		Plantae					Achimenes	species
+
+i: chimenes_erecta_(Lam.)_H.P._Fuchs	Achimenes erecta (Lam.) H.P. Fuchs		Plantae					Achimenes	species
+
+i: chimenes_fimbriata_Rose_ex_C.V._Morton	Achimenes fimbriata Rose ex C.V. Morton		Plantae					Achimenes	species
+
+i: chimenes_flava_C.V._Morton	Achimenes flava C.V. Morton		Plantae					Achimenes	species
+
+i: chimenes_glabrata_(Zucc.)_Fritsch	Achimenes glabrata (Zucc.) Fritsch		Plantae					Achimenes	species
+
+i: chimenes_grandiflora_(Scheide)_DC.	Achimenes grandiflora (Scheide) DC.		Plantae					Achimenes	species
+
+i: chimenes_heterophylla_(Mart.)_DC.	Achimenes heterophylla (Mart.) DC.		Plantae					Achimenes	species
+
+i: chimenes_hintoniana_Ram.-Roa_&_L.E._Skog	Achimenes hintoniana Ram.-Roa & L.E. Skog		Plantae					Achimenes	species
+
+i: chimenes_longiflora_DC.	Achimenes longiflora DC.		Plantae					Achimenes	species
+
+i: chimenes_misera_Lindl.	Achimenes misera Lindl.		Plantae					Achimenes	species
+
+i: chimenes_patens_Benth.	Achimenes patens Benth.		Plantae					Achimenes	species
+
+i: chimenes_pedunculata_Benth.	Achimenes pedunculata Benth.		Plantae					Achimenes	species
+
+i: chnatherum_eminens_(Cav.)_Barkworth	Achnatherum eminens (Cav.) Barkworth		Plantae					Achnatherum	species
+
+i: chnatherum_hymenoides_(Roem._&_Schult.)_Barkworth	Achnatherum hymenoides (Roem. & Schult.) Barkworth		Plantae					Achnatherum	species
+
+i: chyranthes_aspera_L.	Achyranthes aspera L.		Plantae					Achyranthes	species
+
+i: chyranthes_aspera_var._aspera_L.	Achyranthes aspera var. aspera L.		Plantae					Achyranthes	variety
+
+i: ciachne_pulvinata_Benth.	Aciachne pulvinata Benth.		Plantae					Aciachne	species
+
+i: cicarpha_tribuloides	Acicarpha tribuloides		Plantae					Acicarpha	species
+
+i: cisanthera_quadrata_Pers.	Acisanthera quadrata Pers.		Plantae					Acisanthera	species
+
+i: cmella_radicans_var._debilis_(Kunth)_R.K._Jansen	Acmella radicans var. debilis (Kunth) R.K. Jansen		Plantae					Acmella	variety
+
+i: cmella_uliginosa_(Sw.)_Cass.	Acmella uliginosa (Sw.) Cass.		Plantae					Acmella	species
+
+i: cnistus_arborescens_(L.)_Schltdl.	Acnistus arborescens (L.) Schltdl.		Plantae					Acnistus	species
+
+i: croceras_zizanioides_(Kunth)_Dandy	Acroceras zizanioides (Kunth) Dandy		Plantae					Acroceras	species
+
+i: crocomia_aculeata_(Jacq.)_Lodd._ex_Mart.	Acrocomia aculeata (Jacq.) Lodd. ex Mart.		Plantae					Acrocomia	species
+
+i: cronia_bivalvis_(Lindl.)_Luer	Acronia bivalvis (Lindl.) Luer		Plantae					Acronia	species
+
+i: cronia_semiscabra_(Lindl.)_Luer	Acronia semiscabra (Lindl.) Luer		Plantae					Acronia	species
+
+i: ctinocladum_verticillatum_(Nees)_McClure_ex_Soderstr.	Actinocladum verticillatum (Nees) McClure ex Soderstr.		Plantae					Actinocladum	species
+
+i: delia_ricinella_L.	Adelia ricinella L.		Plantae					Adelia	species
+
+i: denanthera_pavonina_L.	Adenanthera pavonina L.		Plantae					Adenanthera	species
+
+i: denophorus_pinnatifidus_Gaudich.	Adenophorus pinnatifidus Gaudich.		Plantae					Adenophorus	species
+
+i: denophorus_tamariscinus_var._tamariscinus	Adenophorus tamariscinus var. tamariscinus		Plantae					Adenophorus	variety
+
+i: denophorus_tenellus_(Kaulf.)_Ranker	Adenophorus tenellus (Kaulf.) Ranker		Plantae					Adenophorus	species
+
+i: denophorus_tripinnatifidus_Gaudich.	Adenophorus tripinnatifidus Gaudich.		Plantae					Adenophorus	species
+
+i: denostemma_brasilianum_(Pers.)_Cass.	Adenostemma brasilianum (Pers.) Cass.		Plantae					Adenostemma	species
+
+i: denostemma_verbesina_(L.)_Sch._Bip.	Adenostemma verbesina (L.) Sch. Bip.		Plantae					Adenostemma	species
+
+i: denostemma_viscosum_J.R._Forst._&_G._Forst.	Adenostemma viscosum J.R. Forst. & G. Forst.		Plantae					Adenostemma	species
+
+i: diantum_capillus-veneris_L.	Adiantum capillus-veneris L.		Plantae					Adiantum	species
+
+i: diantum_hispidulum_Sw.	Adiantum hispidulum Sw.		Plantae					Adiantum	species
+
+i: diantum_latifolium_Lam.	Adiantum latifolium Lam.		Plantae					Adiantum	species
+
+i: diantum_melanoleucum_Willd.	Adiantum melanoleucum Willd.		Plantae					Adiantum	species
+
+i: diantum_obliquum_Willd.	Adiantum obliquum Willd.		Plantae					Adiantum	species
+
+i: diantum_pulverulentum_L.	Adiantum pulverulentum L.		Plantae					Adiantum	species
+
+i: diantum_pyramidale_(L.)_Willd.	Adiantum pyramidale (L.) Willd.		Plantae					Adiantum	species
+
+i: diantum_tenerum_Sw.	Adiantum tenerum Sw.		Plantae					Adiantum	species
+
+i: diantum_tetraphyllum_Humb._&_Bonpl._ex_Willd.	Adiantum tetraphyllum Humb. & Bonpl. ex Willd.		Plantae					Adiantum	species
+
+i: echmea_lingulata_(L.)_Baker	Aechmea lingulata (L.) Baker		Plantae					Aechmea	species
+
+i: egiphila_elata_Sw.	Aegiphila elata Sw.		Plantae					Aegiphila	species
+
+i: egiphila_martinicensis_Jacq.	Aegiphila martinicensis Jacq.		Plantae					Aegiphila	species
+
+i: egiphila_moldenkeana_López-Pal.	Aegiphila moldenkeana López-Pal.		Plantae					Aegiphila	species
+
+i: egopogon_cenchroides_Humb._&_Bonpl._ex_Willd.	Aegopogon cenchroides Humb. & Bonpl. ex Willd.		Plantae					Aegopogon	species
+
+i: egopogon_tenellus_(DC.)_Trin.	Aegopogon tenellus (DC.) Trin.		Plantae					Aegopogon	species
+
+i: eschynomene_americana_var._americana_L.	Aeschynomene americana var. americana L.		Plantae					Aeschynomene	variety
+
+i: eschynomene_sensitiva_Sw.	Aeschynomene sensitiva Sw.		Plantae					Aeschynomene	species
+
+i: eschynomene_villosa_var._villosa_Poir.	Aeschynomene villosa var. villosa Poir.		Plantae					Aeschynomene	variety
+
+i: galinis_fasciculata_(Elliott)_Raf.	Agalinis fasciculata (Elliott) Raf.		Plantae					Agalinis	species
+
+i: gave_americana_L.	Agave americana L.		Plantae					Agave	species
+
+i: gave_angustifolia_Haw.	Agave angustifolia Haw.		Plantae					Agave	species
+
+i: gave_atrovirens_Karw.	Agave atrovirens Karw.		Plantae					Agave	species
+
+i: gave_cerulata_Trel.	Agave cerulata Trel.		Plantae					Agave	species
+
+i: gave_durangensis_Gentry	Agave durangensis Gentry		Plantae					Agave	species
+
+i: gave_hurteri	Agave hurteri		Plantae					Agave	species
+
+i: gave_inaequidens_K._Koch	Agave inaequidens K. Koch		Plantae					Agave	species
+
+i: gave_kerchovei	Agave kerchovei		Plantae					Agave	species
+
+i: gave_macroculmis_Tod.	Agave macroculmis Tod.		Plantae					Agave	species
+
+i: gave_maximiliana_Baker	Agave maximiliana Baker		Plantae					Agave	species
+
+i: gave_pachycentra_Trel.	Agave pachycentra Trel.		Plantae					Agave	species
+
+i: gave_palmeri_Engelm.	Agave palmeri Engelm.		Plantae					Agave	species
+
+i: gave_parryi	Agave parryi		Plantae					Agave	species
+
+i: gave_parryi_var._couesii	Agave parryi var. couesii		Plantae					Agave	variety
+
+i: gave_potatorum_Zucc.	Agave potatorum Zucc.		Plantae					Agave	species
+
+i: gave_scabra_Salm-Dyck	Agave scabra Salm-Dyck		Plantae					Agave	species
+
+i: gave_schidigera	Agave schidigera		Plantae					Agave	species
+
+i: gave_seemanniana_Jacobi	Agave seemanniana Jacobi		Plantae					Agave	species
+
+i: gave_shawii_subsp._goldmaniana	Agave shawii subsp. goldmaniana		Plantae					Agave	subspecies
+
+i: gave_shrevei_Gentry	Agave shrevei Gentry		Plantae					Agave	species
+
+i: gave_wocomahi_Gentry	Agave wocomahi Gentry		Plantae					Agave	species
+
+i: geratina_havanensis_(Kunth)_R.M._King_&_H._Rob.	Ageratina havanensis (Kunth) R.M. King & H. Rob.		Plantae					Ageratina	species
+
+i: geratina_illita_(Urb.)_R.M._King_&_H._Rob.	Ageratina illita (Urb.) R.M. King & H. Rob.		Plantae					Ageratina	species
+
+i: geratina_riparia_(Regel)_R.M._King_&_H._Rob.	Ageratina riparia (Regel) R.M. King & H. Rob.		Plantae					Ageratina	species
+
+i: geratum_conyzoides_L.	Ageratum conyzoides L.		Plantae					Ageratum	species
+
+i: geratum_conyzoides_subsp._conyzoides_L.	Ageratum conyzoides subsp. conyzoides L.		Plantae					Ageratum	subspecies
+
+i: geratum_houstonianum_Mill.	Ageratum houstonianum Mill.		Plantae					Ageratum	species
+
+i: glaia_vitiensis_A.C._Sm.	Aglaia vitiensis A.C. Sm.		Plantae					Aglaia	species
+
+i: gropyron_arizonicum_Scribn._&_J.G._Sm.	Agropyron arizonicum Scribn. & J.G. Sm.		Plantae					Agropyron	species
+
+i: grostis_avenacea_J.F._Gmel.	Agrostis avenacea J.F. Gmel.		Plantae					Agrostis	species
+
+i: grostis_breviculmis_Hitchc.	Agrostis breviculmis Hitchc.		Plantae					Agrostis	species
+
+i: grostis_capillaris_L.	Agrostis capillaris L.		Plantae					Agrostis	species
+
+i: grostis_exarata_Trin.	Agrostis exarata Trin.		Plantae					Agrostis	species
+
+i: grostis_gigantea_Roth	Agrostis gigantea Roth		Plantae					Agrostis	species
+
+i: grostis_hyemale_(Walter)_Britton_et_al.	Agrostis hyemale (Walter) Britton et al.		Plantae					Agrostis	species
+
+i: grostis_hyemalis_(Walter)_Britton_et_al.	Agrostis hyemalis (Walter) Britton et al.		Plantae					Agrostis	species
+
+i: grostis_mertensii_Trin.	Agrostis mertensii Trin.		Plantae					Agrostis	species
+
+i: grostis_micrantha_Steud.	Agrostis micrantha Steud.		Plantae					Agrostis	species
+
+i: grostis_perennans_(Walter)_Tuck.	Agrostis perennans (Walter) Tuck.		Plantae					Agrostis	species
+
+i: grostis_sandwicensis_Hillebr.	Agrostis sandwicensis Hillebr.		Plantae					Agrostis	species
+
+i: grostis_scabra_Willd.	Agrostis scabra Willd.		Plantae					Agrostis	species
+
+i: grostis_stolonifera_L.	Agrostis stolonifera L.		Plantae					Agrostis	species
+
+i: grostis_tolucensis_Kunth	Agrostis tolucensis Kunth		Plantae					Agrostis	species
+
+i: grostis_tolucensis_var._andicola_(Pilg.)_Rúgolo_&_A.M._Molina	Agrostis tolucensis var. andicola (Pilg.) Rúgolo & A.M. Molina		Plantae					Agrostis	variety
+
+i: grostis_tolucensis_var._tolucensis_Kunth	Agrostis tolucensis var. tolucensis Kunth		Plantae					Agrostis	variety
+
+i: iphanes_aculeata_Willd.	Aiphanes aculeata Willd.		Plantae					Aiphanes	species
+
+i: iphanes_luciana	Aiphanes luciana		Plantae					Aiphanes	species
+
+i: ira_caryophyllea_L.	Aira caryophyllea L.		Plantae					Aira	species
+
+i: kebia_quinata_(Houtt.)_Decne.	Akebia quinata (Houtt.) Decne.		Plantae					Akebia	species
+
+i: kebia_trifoliata_(Thunb.)_Koidz.	Akebia trifoliata (Thunb.) Koidz.		Plantae					Akebia	species
+
+i: lbizia_berteroana_(Balb._ex_DC.)_Fawc._&_Rendle	Albizia berteroana (Balb. ex DC.) Fawc. & Rendle		Plantae					Albizia	species
+
+i: lbizia_lebbeck_(L.)_Benth.	Albizia lebbeck (L.) Benth.		Plantae					Albizia	species
+
+i: lchemilla_domingensis_Urb.	Alchemilla domingensis Urb.		Plantae					Alchemilla	species
+
+i: lchornea_latifolia_Sw.	Alchornea latifolia Sw.		Plantae					Alchornea	species
+
+i: ldina_latifolia_var._latifolia_Spruce_ex_Benth.	Aldina latifolia var. latifolia Spruce ex Benth.		Plantae					Aldina	variety
+
+i: lectryon_ferrugineus_Radlk.	Alectryon ferrugineus Radlk.		Plantae					Alectryon	species
+
+i: leurites_moluccana_(L.)_Willd.	Aleurites moluccana (L.) Willd.		Plantae					Aleurites	species
+
+i: llamanda_cathartica_L.	Allamanda cathartica L.		Plantae					Allamanda	species
+
+i: llophylus_africanus_P._Beauv.	Allophylus africanus P. Beauv.		Plantae					Allophylus	species
+
+i: llophylus_camptostachys_Radlk.	Allophylus camptostachys Radlk.		Plantae					Allophylus	species
+
+i: llophylus_cobbe_(L.)_Raeusch.	Allophylus cobbe (L.) Raeusch.		Plantae					Allophylus	species
+
+i: llophylus_cominia_(L.)_Sw.	Allophylus cominia (L.) Sw.		Plantae					Allophylus	species
+
+i: llophylus_crassinervis_Radlk.	Allophylus crassinervis Radlk.		Plantae					Allophylus	species
+
+i: llophylus_edulis_(A._St.-Hil.)_Radlk.	Allophylus edulis (A. St.-Hil.) Radlk.		Plantae					Allophylus	species
+
+i: llophylus_excelsus_Radlk.	Allophylus excelsus Radlk.		Plantae					Allophylus	species
+
+i: llophylus_floribundus_(Poepp._&_Endl.)_Radlk.	Allophylus floribundus (Poepp. & Endl.) Radlk.		Plantae					Allophylus	species
+
+i: llophylus_guaraniticus_Radlk.	Allophylus guaraniticus Radlk.		Plantae					Allophylus	species
+
+i: llophylus_incanus_Radlk.	Allophylus incanus Radlk.		Plantae					Allophylus	species
+
+i: llophylus_occidentalis_(Swartz)_Radlk.	Allophylus occidentalis (Swartz) Radlk.		Plantae					Allophylus	species
+
+i: llophylus_pau
+
+i: dentifier	ScientificName	Parent TaxonID	Kingdom	Phylum	Class	Order	Family	Genus	TaxonRank	FurtherInformationURL	TaxonomicStatus	TaxonRemarks	NamePublishedIn	ReferenceID
+
