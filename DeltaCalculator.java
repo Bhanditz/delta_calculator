@@ -1,9 +1,13 @@
 package com.deltacalculator;
 
+import org.apache.commons.io.FilenameUtils;
+import org.gbif.dwca.io.Archive;
+import org.gbif.dwca.io.ArchiveFactory;
+import org.gbif.dwca.io.ArchiveFile;
+
 import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 public class DeltaCalculator {
@@ -11,37 +15,64 @@ public class DeltaCalculator {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         DeltaCalculator deltaCalculator = new DeltaCalculator();
-        File version1 = new File("eoldynamichierarchyv1revised.tar.gz"),
-             version2 = new File("eoldynamichierarchyv2revised.tar.gz");
+        File version1 = new File("4.tar.gz"),
+             version2 = new File("8.tar.gz");
+//
+//        deltaCalculator.execDecompress(version1.getName());
+//        deltaCalculator.execDecompress(version2.getName());
 
-        deltaCalculator.execDecompress(version1.getName());
-        deltaCalculator.execDecompress(version2.getName());
+//        File archive1 = new File(version1.getName().substring(0, version1.getName().indexOf('.'))),
+//             archive2 = new File(version2.getName().substring(0, version2.getName().indexOf('.')));
 
-        File archive1 = new File(version1.getName().substring(0, version1.getName().indexOf('.'))),
-             archive2 = new File(version2.getName().substring(0, version2.getName().indexOf('.')));
+//        String archive1Path = archive1.getName(),
+//               archive2Path = archive2.getName();
 
-        String archive1Path = archive1.getName(),
-               archive2Path = archive2.getName();
+        String archive1Path = version1.getName(),
+                archive2Path = version2.getName();
 
+        Archive dwca1 = deltaCalculator.openDwcAFolder(archive1Path) ,
+                dwca2 = deltaCalculator.openDwcAFolder(archive2Path);
 
-        ArrayList<String> archive1Content = new ArrayList<>(Arrays.asList(archive1.list())),
-                archive2Content = new ArrayList<>(Arrays.asList(archive2.list())),
+//        Set<ArchiveFile> archive1Files = dwca1.getExtensions(),
+//                         archive2Files = dwca2.getExtensions();
+//for (ArchiveFile archiveFile:dwca1.getExtensions())
+//{
+//    archive1Files.add(archiveFile);
+////    dwca1.setExtensions(archiveFile);
+//}
+//System.out.println(archive1Files.size()+", "+archive2Files.size());
+        ArrayList<String>
+                archive1Content = new ArrayList<>(),
+                archive2Content = new ArrayList<>(),
                 archive1Names = new ArrayList<>(),
                 archive2Names = new ArrayList<>(),
                 archive1Temp = new ArrayList<>(),
                 archive2Temp = new ArrayList<>();
+        int i = 0;
+//            archive1Size = archive1Files.size(),
+//            archive2Size = archive2Files.size();
 
+        int[] archive1FileHasHeader = new int [dwca1.getExtensions().size()],
+              archive2FileHasHeader = new int [dwca2.getExtensions().size()];
+        for (ArchiveFile archiveFile : dwca1.getExtensions())
+        {
+            archive1Content.add(i, archiveFile.getTitle());
+            archive1Names.add(i, archive1Content.get(i).toString());
+            archive1Temp.add(i, archive1Content.get(i).toString());
+            archive1FileHasHeader[i] = archiveFile.getIgnoreHeaderLines();
+            i++;
+        }
+        i=0;
+        for (ArchiveFile archiveFile : dwca2.getExtensions())
+        {
+            archive2Content.add(i, archiveFile.getTitle());
+            archive2Names.add(i, archive2Content.get(i).toString());
+            archive2Temp.add(i, archive2Content.get(i).toString());
+            archive2FileHasHeader[i] = archiveFile.getIgnoreHeaderLines();
+            i++;
+        }
         if (!DWCADiff.exists())
             DWCADiff.mkdir();
-        int i;
-        for (i = 0; i < archive1Content.size(); i++) {
-            archive1Names.add(i, archive1Content.get(i));
-            archive1Temp.add(i, archive1Content.get(i));
-        }
-        for (i = 0; i < archive2Content.size(); i++) {
-            archive2Names.add(i, archive2Content.get(i));
-            archive2Temp.add(i, archive2Content.get(i));
-        }
 
         Collections.sort(archive1Names);
         Collections.sort(archive2Names);
@@ -69,27 +100,30 @@ public class DeltaCalculator {
         }
 
         // if the two lists are identical, or reharvesting the rest of the two archives files
-        for (i = 0; i < archive1Names.size(); i++) {
-            File file1 = new File(archive1Path + "/" + archive1Names.get(i)),
-                    file2 = new File(archive2Path + "/" + archive1Names.get(i));
-            if (file2.getName().contains("meta")) {
-                System.out.println("Meta File Found - Sending File: "+file2.getName());
+        for (i = 0; i < archive2Names.size(); i++) {
+            File file1 = new File(dwca1.getLocation().getName() + "/" + archive1Names.get(i)),
+                    file2 = new File(dwca2.getLocation().getName() + "/" + archive2Names.get(i));
+            System.out.println(file1.getPath()+", "+file2.getPath());
+            if (archive2Names.get(i).contains("meta")) {
+                System.out.println("Meta File Found - Sending File: "+archive2Names.get(i));
                 deltaCalculator.setMetaFile(file2, DWCADiff.getName());
             }
             else {
+
+                System.out.println(archive2Names.get(i));
                 String fileHeader = deltaCalculator.getHeader(file2);
                 File sortedFile1 = deltaCalculator.executeSort(file1),
                         sortedFile2 = deltaCalculator.executeSort(file2),
                         differenceFile = deltaCalculator.executeDiff(sortedFile1.getPath(), sortedFile2.getPath());
+                if (archive2FileHasHeader[i]==1)
                 deltaCalculator.addHeader(differenceFile, fileHeader);
-            }
-        }
+        }}
         System.gc();
     }
 
     private void setMetaFile(File metaFile, String archivePathName) throws IOException {
         File targetMetaFile = new File(archivePathName+"/"+metaFile.getName());
-        Files.copy(metaFile.toPath(), targetMetaFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(metaFile.toPath(),targetMetaFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
     }
 
     public File executeDiff (String file1, String file2) throws IOException, InterruptedException {
@@ -193,5 +227,18 @@ public String lineUpdate(String inputLine)
     {
         String updatedLine = "U: "+inputLine.substring(inputLine.indexOf('|')+1,inputLine.length())+"\n";
         return updatedLine;
+    }
+    private Archive openDwcAFolder(String path){
+        Archive dwcArchive;
+        try {
+            File myArchiveFile = new File(path);
+            File extractToFolder = new File(FilenameUtils.removeExtension(path).substring(0,FilenameUtils.removeExtension(path).indexOf(".")));
+            dwcArchive = ArchiveFactory.openArchive(myArchiveFile, extractToFolder);
+        } catch (Exception e) {
+            System.out.println("Failed to parse the Darwin core archive " + e.getMessage());
+//            logger.debug("Failed to Parse the Darwin Core Archive"+e.getMessage());
+            return null;
+        }
+        return dwcArchive;
     }
 }
