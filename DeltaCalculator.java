@@ -1,11 +1,15 @@
 package com.deltacalculator;
 
+import com.google.common.base.Utf8;
+import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.gbif.dwca.io.Archive;
 import org.gbif.dwca.io.ArchiveFactory;
 import org.gbif.dwca.io.ArchiveFile;
 
 import java.io.*;
+import java.nio.CharBuffer;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,8 +20,8 @@ static File DWCADiff=new File("DifferenceDynamicHierarchy_"+new Date().getTime()
 
 public static void main(String[] args) throws IOException, InterruptedException {
         DeltaCalculator deltaCalculator = new DeltaCalculator();
-        File version1 = new File("4.tar.gz"),
-             version2 = new File("7.tar.gz");
+        File version1 = new File("eoldynamichierarchyv1revised.tar.gz"),
+             version2 = new File("eoldynamichierarchyv2revised.tar.gz");
         String archive1Path = version1.getName(),
                archive2Path = version2.getName();
         Archive dwca1 = deltaCalculator.openDwcAFolder(archive1Path),
@@ -36,24 +40,26 @@ private void filterContent(Archive version1, Archive version2) throws IOExceptio
                 archive1Temp = new ArrayList<>(),
                 archive2Temp = new ArrayList<>();
         int i = 0;
-        int[] archive1FileHasHeader = new int [version1.getExtensions().size()+2],
-                archive2FileHasHeader = new int [version2.getExtensions().size()+2];
+        ArrayList<Integer> archive1FileHasHeader = new ArrayList<Integer> (Integer.valueOf(version1.getExtensions().size()+2)),
+                archive2FileHasHeader = new ArrayList<Integer>(Integer.valueOf(version2.getExtensions().size()+2));
 
         for (ArchiveFile archiveFile : version1.getExtensions())
         {
             archive1Content.add(i, archiveFile.getTitle());
             archive1Names.add(i, archive1Content.get(i).toString());
             archive1Temp.add(i, archive1Content.get(i).toString());
-            archive1FileHasHeader[i] = archiveFile.getIgnoreHeaderLines();
+            archive1FileHasHeader.add(i,archiveFile.getIgnoreHeaderLines());
             i++;
         }
         archive1Content.add(i,version1.getMetadataLocationFile().getName());
         archive1Names.add(i, archive1Content.get(i).toString());
         archive1Temp.add(i, archive1Content.get(i).toString());
+        archive1FileHasHeader.add(i,3);
         i++;
         archive1Content.add(i, version1.getCore().getTitle());
         archive1Names.add(i, archive1Content.get(i).toString());
         archive1Temp.add(i, archive1Content.get(i).toString());
+        archive1FileHasHeader.add(i,version1.getCore().getIgnoreHeaderLines());
 
         i=0;
         for (ArchiveFile archiveFile : version2.getExtensions())
@@ -61,13 +67,14 @@ private void filterContent(Archive version1, Archive version2) throws IOExceptio
             archive2Content.add(i, archiveFile.getTitle());
             archive2Names.add(i, archive2Content.get(i).toString());
             archive2Temp.add(i, archive2Content.get(i).toString());
-            archive2FileHasHeader[i] = archiveFile.getIgnoreHeaderLines();
+            archive2FileHasHeader.add(i,archiveFile.getIgnoreHeaderLines());
             i++;
         }
         archive2Content.add(i,version2.getMetadataLocationFile().getName());
         archive2Names.add(i, archive1Content.get(i).toString());
         archive2Temp.add(i, archive1Content.get(i).toString());
-        i++;
+        archive2FileHasHeader.add(i,3);
+    i++;
         archive2Content.add(i, version2.getCore().getTitle());
         archive2Names.add(i, archive2Content.get(i).toString());
         archive2Temp.add(i, archive2Content.get(i).toString());
@@ -89,6 +96,7 @@ private void filterContent(Archive version1, Archive version2) throws IOExceptio
                 File addedFile = new File(version2.getLocation().getName() + "/" + archive2Temp.get(i));
                 readWrite(addedFile, true, DWCADiff.getName());
                 archive2Names.remove(archive2Temp.get(i));
+
             }
         }
 
@@ -101,10 +109,10 @@ private void filterContent(Archive version1, Archive version2) throws IOExceptio
         }
 
         // if the two lists are identical, or reharvesting the rest of the two archives files
-        compareContent(version1,version2, archive1Names, archive2Names,archive2FileHasHeader);
+        compareContent(version1,version2, archive2Names, archive2FileHasHeader);
     }
 
-private void compareContent(Archive version1, Archive version2, ArrayList content1, ArrayList content2, int hasHeader[]) throws IOException, InterruptedException {
+private void compareContent(Archive version1, Archive version2, ArrayList content2, ArrayList hasHeader) throws IOException, InterruptedException {
     for (int i = 0; i < content2.size(); i++) {
         File file1 = new File(version1.getLocation().getName() + "/" + content2.get(i)),
                 file2 = new File(version2.getLocation().getName() + "/" + content2.get(i));
@@ -116,10 +124,12 @@ private void compareContent(Archive version1, Archive version2, ArrayList conten
         else {
             System.out.println(content2.get(i));
             String fileHeader = getHeader(file2);
-            File sortedFile1 = executeSort(file1),
+            File
+                    sortedFile1 = executeSort(file1),
                     sortedFile2 = executeSort(file2),
                     differenceFile = executeDiff(sortedFile1.getPath(), sortedFile2.getPath());
-            if (hasHeader[i]==1)
+
+            if ((int)(hasHeader.get(i))==1)
                 addHeader(differenceFile, fileHeader);
         }}
 }
@@ -130,28 +140,38 @@ private void copyMetaFile(File metaFile, String archivePathName) throws IOExcept
     }
 
 public File executeDiff (String file1, String file2) throws IOException, InterruptedException {
-    Process sDiff = Runtime.getRuntime().exec("sdiff "+file1+" "+ file2+ " -s"+" -H"+" -w"+" 2048");
-    sDiff.waitFor();
     System.out.println("Comparing Files: "+file1+", "+file2);
     if(!DWCADiff.exists())
-    DWCADiff.mkdir();
-        File diffFile=new File(DWCADiff+"/"+file1.substring(file1.indexOf("/")+1,file1.length()));
+        DWCADiff.mkdir();
+    File diffFile=new File(DWCADiff+"/"+file1.substring(file1.indexOf("/")+1,file1.length()));
     if (!diffFile.exists())
         diffFile.createNewFile();
+
+    System.out.println("before sdiff directly");
+
+    Process sDiff = Runtime.getRuntime().exec("sdiff "+file1+" "+ file2+ " -s"+" -H"+" -w"+" 2048");
     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(sDiff.getInputStream()));
+    System.out.println("After bufferedreader ");
     BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(diffFile));
+
+    int i = 0;
     String line = bufferedReader.readLine();
-    while(line!=null)
-    {
+    System.out.println("Before loop line is: " + line);
+    while((line = bufferedReader.readLine())!=null){
         line = line.trim();
-        if (line.startsWith(">"))
-            bufferedWriter.write(lineInsert(line));
-        else if (line.endsWith("<"))
-            bufferedWriter.write(lineDelete(line).substring(0,lineDelete(line).length()-2)+"\n");
-        else
-            bufferedWriter.write(lineUpdate(line));
-        line=bufferedReader.readLine();
+        System.out.println("Inside loop line is: " + line);
+//        if (line.startsWith(">"))
+//            bufferedWriter.write(lineInsert(line));
+//        else if (line.endsWith("<"))
+//            bufferedWriter.write(lineDelete(line).substring(0,lineDelete(line).length()-2)+"\n");
+//        else
+//            bufferedWriter.write(lineUpdate(line));
+            bufferedWriter.write(line+"\n");
+        i++;
     }
+
+    System.out.println("i = " + i);
+    bufferedReader.close();
     commit(bufferedWriter);
     return diffFile;
 }
@@ -213,8 +233,11 @@ public String lineInsert(String inputLine)
 {
     inputLine = inputLine.substring(1,inputLine.length());
     inputLine = inputLine.trim();
-    String insertedLine = "I: "+inputLine+"\n";
-    return insertedLine;
+    if(!StringUtils.isBlank(inputLine))
+    {String insertedLine = "I: "+inputLine+"\n";
+    return insertedLine;}
+    else
+        return ("");
 }
 public String lineDelete(String inputLine)
 {
@@ -229,17 +252,11 @@ public String lineUpdate(String inputLine)
 private Archive openDwcAFolder(String path) throws IOException
 {
         Archive dwcArchive;
-//        try {
         System.out.println("Extracting Archive: " + path);
         File myArchiveFile = new File(path);
         File extractToFolder = new File(FilenameUtils.removeExtension(path) + ".out");
        dwcArchive = ArchiveFactory.openArchive(myArchiveFile, extractToFolder);
        findMetaFile(dwcArchive);
-//        } catch (Exception e) {
-//            System.out.println("Failed to parse the Darwin core archive " + e.getMessage());
-////            logger.debug("Failed to Parse the Darwin Core Archive"+e.getMessage());
-//            return null;
-//        }
         return dwcArchive;
 }
 
