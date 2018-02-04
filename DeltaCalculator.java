@@ -1,7 +1,5 @@
 package com.deltacalculator;
 
-import com.google.common.base.Utf8;
-import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.gbif.dwca.io.Archive;
@@ -9,17 +7,18 @@ import org.gbif.dwca.io.ArchiveFactory;
 import org.gbif.dwca.io.ArchiveFile;
 
 import java.io.*;
-import java.nio.CharBuffer;
 import java.nio.file.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
+
 
 public class DeltaCalculator {
 static File DWCADiff=new File("DifferenceDynamicHierarchy_"+new Date().getTime());
 
 public static void main(String[] args) throws IOException, InterruptedException {
         DeltaCalculator deltaCalculator = new DeltaCalculator();
+        if(!DWCADiff.exists())
+            DWCADiff.mkdir();
         File version1 = new File("eoldynamichierarchyv1revised.tar.gz"),
              version2 = new File("eoldynamichierarchyv2revised.tar.gz");
         String archive1Path = version1.getName(),
@@ -28,64 +27,53 @@ public static void main(String[] args) throws IOException, InterruptedException 
                 dwca2 = deltaCalculator.openDwcAFolder(archive2Path);
         System.out.println(dwca1.getMetadataLocation());
         System.out.println(dwca2.getMetadataLocation());
+        File metaFile = new File (dwca2.getLocation().getName()+"/"+dwca2.getMetadataLocationFile().getName());
+        if(!dwca2.getMetadataLocation().equals(null)) {
+            System.out.println("Meta File Found - Sending File: " + metaFile.getPath());
+            deltaCalculator.copyMetaFile(metaFile, DWCADiff.getName());
+        }
         deltaCalculator.filterContent(dwca1,dwca2);
     }
 
 private void filterContent(Archive version1, Archive version2) throws IOException, InterruptedException {
-        ArrayList<String>
-                archive1Content = new ArrayList<>(),
-                archive2Content = new ArrayList<>(),
-                archive1Names = new ArrayList<>(),
-                archive2Names = new ArrayList<>(),
-                archive1Temp = new ArrayList<>(),
-                archive2Temp = new ArrayList<>();
-        int i = 0;
-        ArrayList<Integer> archive1FileHasHeader = new ArrayList<Integer> (Integer.valueOf(version1.getExtensions().size()+2)),
-                archive2FileHasHeader = new ArrayList<Integer>(Integer.valueOf(version2.getExtensions().size()+2));
 
-        for (ArchiveFile archiveFile : version1.getExtensions())
-        {
-            archive1Content.add(i, archiveFile.getTitle());
-            archive1Names.add(i, archive1Content.get(i).toString());
-            archive1Temp.add(i, archive1Content.get(i).toString());
-            archive1FileHasHeader.add(i,archiveFile.getIgnoreHeaderLines());
-            i++;
-        }
-        archive1Content.add(i,version1.getMetadataLocationFile().getName());
-        archive1Names.add(i, archive1Content.get(i).toString());
-        archive1Temp.add(i, archive1Content.get(i).toString());
-        archive1FileHasHeader.add(i,3);
+    ArrayList<ArchiveFile>
+            archive1Content = new ArrayList<>(),
+            archive2Content = new ArrayList<>(),
+            archive1Names = new ArrayList<>(),
+            archive2Names = new ArrayList<>(),
+            archive1Temp = new ArrayList<>(),
+            archive2Temp = new ArrayList<>();
+    int i = 0;
+//    int[] archive1FileHasHeader = new int [version1.getExtensions().size()+2],
+//            archive2FileHasHeader = new int [version2.getExtensions().size()+2];
+
+    for (ArchiveFile archiveFile : version1.getExtensions())
+    {
+        archive1Content.add(i, archiveFile);
+        archive1Names.add(i, archive1Content.get(i));
+        archive1Temp.add(i, archive1Content.get(i));
         i++;
-        archive1Content.add(i, version1.getCore().getTitle());
-        archive1Names.add(i, archive1Content.get(i).toString());
-        archive1Temp.add(i, archive1Content.get(i).toString());
-        archive1FileHasHeader.add(i,version1.getCore().getIgnoreHeaderLines());
+    }
 
-        i=0;
-        for (ArchiveFile archiveFile : version2.getExtensions())
-        {
-            archive2Content.add(i, archiveFile.getTitle());
-            archive2Names.add(i, archive2Content.get(i).toString());
-            archive2Temp.add(i, archive2Content.get(i).toString());
-            archive2FileHasHeader.add(i,archiveFile.getIgnoreHeaderLines());
-            i++;
-        }
-        archive2Content.add(i,version2.getMetadataLocationFile().getName());
-        archive2Names.add(i, archive1Content.get(i).toString());
-        archive2Temp.add(i, archive1Content.get(i).toString());
-        archive2FileHasHeader.add(i,3);
-    i++;
-        archive2Content.add(i, version2.getCore().getTitle());
-        archive2Names.add(i, archive2Content.get(i).toString());
-        archive2Temp.add(i, archive2Content.get(i).toString());
+    archive1Content.add(i, version1.getCore());
+    archive1Names.add(i, archive1Content.get(i));
+    archive1Temp.add(i, archive1Content.get(i));
 
-        if (!DWCADiff.exists())
-            DWCADiff.mkdir();
+    i=0;
+    for (ArchiveFile archiveFile : version2.getExtensions())
+    {
+        archive2Content.add(i, archiveFile);
+        archive2Names.add(i, archive2Content.get(i));
+        archive2Temp.add(i, archive2Content.get(i));
+        i++;
+    }
 
-        Collections.sort(archive1Names);
-        Collections.sort(archive2Names);
-        Collections.sort(archive1Temp);
-        Collections.sort(archive1Temp);
+    archive2Content.add(i, version2.getCore());
+    archive2Names.add(i, archive2Content.get(i));
+    archive2Temp.add(i, archive2Content.get(i));
+
+
 
         boolean isAddedContent = archive2Temp.removeAll(archive1Names),
                 isDeletedContent = archive1Temp.removeAll(archive2Names);
@@ -96,7 +84,6 @@ private void filterContent(Archive version1, Archive version2) throws IOExceptio
                 File addedFile = new File(version2.getLocation().getName() + "/" + archive2Temp.get(i));
                 readWrite(addedFile, true, DWCADiff.getName());
                 archive2Names.remove(archive2Temp.get(i));
-
             }
         }
 
@@ -108,34 +95,38 @@ private void filterContent(Archive version1, Archive version2) throws IOExceptio
             }
         }
 
+
         // if the two lists are identical, or reharvesting the rest of the two archives files
-        compareContent(version1,version2, archive2Names, archive2FileHasHeader);
+        compareContent(version1,version2, archive2Names);
     }
 
-private void compareContent(Archive version1, Archive version2, ArrayList content2, ArrayList hasHeader) throws IOException, InterruptedException {
+private void compareContent(Archive version1, Archive version2, ArrayList<ArchiveFile> content2) throws IOException, InterruptedException {
+
     for (int i = 0; i < content2.size(); i++) {
-        File file1 = new File(version1.getLocation().getName() + "/" + content2.get(i)),
-                file2 = new File(version2.getLocation().getName() + "/" + content2.get(i));
+        File file1 = new File(version1.getLocation().getName() + "/" + content2.get(i).getTitle()),
+             file2 = new File(version2.getLocation().getName() + "/" + content2.get(i).getTitle());
+
         System.out.println(file1.getPath()+", "+file2.getPath());
-        if ((content2.get(i).toString()).equals(version2.getMetadataLocationFile().getName())) {
-            System.out.println("Meta File Found - Sending File: "+content2.get(i));
-            copyMetaFile(file2, DWCADiff.getName());
-        }
-        else {
-            System.out.println(content2.get(i));
+//        if ((content2.get(i).toString()).equals(version2.getMetadataLocationFile().getName())) {
+
+//        }
+//        else {
             String fileHeader = getHeader(file2);
             File
                     sortedFile1 = executeSort(file1),
                     sortedFile2 = executeSort(file2),
                     differenceFile = executeDiff(sortedFile1.getPath(), sortedFile2.getPath());
 
-            if ((int)(hasHeader.get(i))==1)
+            if ((content2.get(i).getIgnoreHeaderLines())==1)
                 addHeader(differenceFile, fileHeader);
-        }}
+        }
+//}
+
 }
 
 private void copyMetaFile(File metaFile, String archivePathName) throws IOException {
         File targetMetaFile = new File(archivePathName+"/"+metaFile.getName());
+        if (!targetMetaFile.exists())
         Files.copy(metaFile.toPath(),targetMetaFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
     }
 
@@ -256,25 +247,21 @@ private Archive openDwcAFolder(String path) throws IOException
         File myArchiveFile = new File(path);
         File extractToFolder = new File(FilenameUtils.removeExtension(path) + ".out");
        dwcArchive = ArchiveFactory.openArchive(myArchiveFile, extractToFolder);
-       findMetaFile(dwcArchive);
+    String metaFiles[] = {"metadata.xml","meta.xml", "eml.xml"};
+    int i;
+   boolean metaFileExists = false;
+    File metaFile = new File(dwcArchive.getLocation().getName() + "/" + metaFiles[0]);
+    for (i = 0; i < metaFiles.length; i++) {
+        metaFile = new File(dwcArchive.getLocation().getName() + "/" + metaFiles[i]);
+        if (metaFile.exists()) {
+            metaFileExists = true;
+            break;
+        }
+    }
+    if (metaFileExists == false)
+        System.out.println("Meta File not Found!");
+    else dwcArchive.setMetadataLocation(metaFile.getPath());
         return dwcArchive;
 }
 
-private void findMetaFile(Archive dwcArchive)
-{
-        String metaFiles[] = {"metadata.xml","meta.xml", "eml.xml"};
-        int i;
-        boolean metaFileExists = false;
-        File metaFile = new File(dwcArchive.getLocation().getName() + "/" + metaFiles[0]);
-        for (i = 0; i < metaFiles.length; i++) {
-            metaFile = new File(dwcArchive.getLocation().getName() + "/" + metaFiles[i]);
-            if (metaFile.exists()) {
-                metaFileExists = true;
-                break;
-            }
-        }
-        if (metaFileExists == false)
-            System.out.println("Meta File not Found!");
-        else dwcArchive.setMetadataLocation(metaFile.getPath());
-    }
 }
