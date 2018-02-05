@@ -19,10 +19,10 @@ public static void main(String[] args) throws IOException, InterruptedException 
         DeltaCalculator deltaCalculator = new DeltaCalculator();
         if(!DWCADiff.exists())
             DWCADiff.mkdir();
-        File version1 = new File("eoldynamichierarchyv1revised.tar.gz"),
-             version2 = new File("eoldynamichierarchyv2revised.tar.gz");
-        String archive1Path = version1.getName(),
-               archive2Path = version2.getName();
+        File archiveVersion1 = new File("indianocean.tar.gz"),
+             archiveVersion2 = new File("indianocean2.tar.gz");
+        String archive1Path = archiveVersion1.getName(),
+               archive2Path = archiveVersion2.getName();
         Archive dwca1 = deltaCalculator.openDwcAFolder(archive1Path),
                 dwca2 = deltaCalculator.openDwcAFolder(archive2Path);
         System.out.println(dwca1.getMetadataLocation());
@@ -33,9 +33,26 @@ public static void main(String[] args) throws IOException, InterruptedException 
             deltaCalculator.copyMetaFile(metaFile, DWCADiff.getName());
         }
         deltaCalculator.filterContent(dwca1,dwca2);
+        deltaCalculator.compress(DWCADiff);
+        deltaCalculator.removeDirectory(dwca1.getLocation().getName());
+        deltaCalculator.removeDirectory(dwca2.getLocation().getName());
+        deltaCalculator.removeDirectory(DWCADiff.getName());
     }
 
-private void filterContent(Archive version1, Archive version2) throws IOException, InterruptedException {
+
+    private void removeDirectory(String directory) throws IOException, InterruptedException {
+    System.out.println("Removing Directory: "+directory);
+    Process removeDir = Runtime.getRuntime().exec("rm -r "+directory);
+    removeDir.waitFor();
+    }
+
+    private void compress(File dwcaDiff) throws IOException, InterruptedException {
+    System.out.println("Compressing Archive: "+dwcaDiff.getName());
+    Process compress = Runtime.getRuntime().exec("tar -czf "+dwcaDiff.getName()+".tar.gz"+" "+dwcaDiff.getName());
+    compress.waitFor();
+    }
+
+    private void filterContent(Archive version1, Archive version2) throws IOException, InterruptedException {
 
     ArrayList<ArchiveFile>
             archive1Content = new ArrayList<>(),
@@ -53,6 +70,7 @@ private void filterContent(Archive version1, Archive version2) throws IOExceptio
         archive1Content.add(i, archiveFile);
         archive1Names.add(i, archive1Content.get(i));
         archive1Temp.add(i, archive1Content.get(i));
+        System.out.println("Extension File number "+i+" is: "+archiveFile.getTitle());
         i++;
     }
 
@@ -66,6 +84,7 @@ private void filterContent(Archive version1, Archive version2) throws IOExceptio
         archive2Content.add(i, archiveFile);
         archive2Names.add(i, archive2Content.get(i));
         archive2Temp.add(i, archive2Content.get(i));
+        System.out.println("Extension File number "+i+" is: "+archiveFile.getTitle());
         i++;
     }
 
